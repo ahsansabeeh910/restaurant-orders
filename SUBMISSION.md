@@ -2,8 +2,8 @@
 
 ## Links
 
-- **GitHub repository:** [TO BE FILLED BY USER]
-- **Live application:** [TO BE FILLED BY USER]
+- **GitHub repository:** https://github.com/ahsansabeeh910/restaurant-orders
+- **Live application:** https://restaurant-orders-one.vercel.app
 
 ## Notes for the reviewer
 
