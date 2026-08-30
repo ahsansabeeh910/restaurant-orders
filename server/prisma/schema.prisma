@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  MANAGER
+  WAITER
+  KITCHEN
+}
+
+enum OrderStatus {
+  PLACED
+  ACCEPTED
+  PREPARING
+  READY
+  SERVED
+  CANCELLED
+}
+
+enum HistoryAction {
+  STATUS_CHANGE
+  LINE_ADDED
+  LINE_VOIDED
+  NOTE_ADDED
+  COLLABORATOR_ADDED
+  ORDER_ARCHIVED
+  ORDER_RESTORED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  name         String
+  role         Role     @default(WAITER)
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  primaryOrders    Order[]             @relation("PrimaryWaiter")
+  collaborations   OrderCollaborator[]
+  historyActions   OrderHistory[]
+  acknowledgedAlerts Alert[]           @relation("AcknowledgedBy")
+
+  @@map("users")
+}
+
+model MenuItem {
+  id          String   @id @default(uuid())
+  name        String
+  price       Decimal  @db.Decimal(10, 2)
+  isAvailable Boolean  @default(true) @map("is_available")
+  isArchived  Boolean  @default(false) @map("is_archived")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  orderLines  OrderLine[]
+
+  @@map("menu_items")
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  tableNumber     Int         @map("table_number")
+  status          OrderStatus @default(PLACED)
+  primaryWaiterId String      @map("primary_waiter_id")
+  isArchived      Boolean     @default(false) @map("is_archived")
+  total           Decimal     @default(0) @db.Decimal(10, 2)
+  placedAt        DateTime    @default(now()) @map("placed_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  primaryWaiter   User                @relation("PrimaryWaiter", fields: [primaryWaiterId], references: [id])
+  lines           OrderLine[]
+  collaborators   OrderCollaborator[]
+  history         OrderHistory[]
+  alerts          Alert[]
+
+  @@map("orders")
+}
+
+model OrderLine {
+  id                  String   @id @default(uuid())
+  orderId             String   @map("order_id")
+  menuItemId          String   @map("menu_item_id")
+  quantity            Int
+  specialInstructions String?  @map("special_instructions")
+  unitPrice           Decimal  @map("unit_price") @db.Decimal(10, 2)
+  isVoid              Boolean  @default(false) @map("is_void")
+  voidReason          String?  @map("void_reason")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  order    Order    @relation(fields: [orderId], references: [id])
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id])
+
+  @@map("order_lines")
+}
+
+model OrderCollaborator {
+  orderId String   @map("order_id")
+  userId  String   @map("user_id")
+  addedAt DateTime @default(now()) @map("added_at")
+
+  order Order @relation(fields: [orderId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@id([orderId, userId])
+  @@map("order_collaborators")
+}
+
+model OrderHistory {
+  id          String        @id @default(uuid())
+  orderId     String        @map("order_id")
+  performedBy String        @map("performed_by")
+  action      HistoryAction
+  oldValue    String?       @map("old_value")
+  newValue    String?       @map("new_value")
+  details     String?
+  createdAt   DateTime      @default(now()) @map("created_at")
+
+  order Order @relation(fields: [orderId], references: [id])
+  user  User  @relation(fields: [performedBy], references: [id])
+
+  @@map("order_history")
+}
+
+model Alert {
+  id              String    @id @default(uuid())
+  orderId         String    @map("order_id")
+  acknowledgedBy  String?   @map("acknowledged_by")
+  acknowledgedAt  DateTime? @map("acknowledged_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  reappearAfter   DateTime? @map("reappear_after")
+  isActive        Boolean   @default(true) @map("is_active")
+
+  order Order @relation(fields: [orderId], references: [id])
+  acknowledgedByUser User? @relation("AcknowledgedBy", fields: [acknowledgedBy], references: [id])
+
+  @@map("alerts")
+}

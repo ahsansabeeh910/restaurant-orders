@@ -1,0 +1,19 @@
+node_modules/
+dist/
+build/
+.next/
+target/
+__pycache__/
+venv/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+
+# Prisma
+server/prisma/migrations/
+
+# IDE
+.vscode/
+.idea/
