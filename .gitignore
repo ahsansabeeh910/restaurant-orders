@@ -13,7 +13,6 @@ venv/
 
 # Prisma
 server/prisma/migrations/
-
 # IDE
 .vscode/
 .idea/
