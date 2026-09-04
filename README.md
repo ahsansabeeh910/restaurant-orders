@@ -1,7 +1,6 @@
 # Assignment 09 — Restaurant Orders
 
 ## The scenario
-
 Picture a busy independent restaurant taking orders on paper tickets that get carried by hand from
 the counter to the kitchen and pinned to a corkboard until someone remembers to take them down. The
 menu lives on a printed sheet and a chalkboard of specials, and when a price changes or the kitchen
