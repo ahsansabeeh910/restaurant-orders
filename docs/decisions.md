@@ -30,3 +30,8 @@
 - **Chose:** Implemented a real-time Kitchen Display Screen (KDS) powered by `socket.io`.
 - **Rejected:** Having the kitchen staff rely on HTTP polling or manual page refreshes.
 - **Why:** The assignment explicitly called out "corkboards and paper tickets" as a major pain point. A real-time Kanban board that auto-updates when waiters accept orders represents a massive quality-of-life improvement for the business and demonstrates event-driven full-stack architecture.
+
+## Decision 7: UI Redesign & Glassmorphism Theme
+- **Chose:** A fully custom dark glassmorphism theme (`bg-[#0a0a0f]`, `backdrop-blur-xl`) with custom mobile-responsive tables and a heavily styled mockup-matching login page.
+- **Rejected:** Sticking to default Tailwind `bg-white` and standard block components.
+- **Why:** To make the application feel more like a premium, modern "RestaurantOS". A dark theme with frosted glass elements also performs well in low-light environments (like a dim restaurant floor or busy kitchen). Added extensive responsive breakpoints (horizontal scroll for tables, vertical stacking for Kanban columns, flex-wrapping headers) to ensure it works beautifully on tablets and phones out-of-the-box.

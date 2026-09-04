@@ -11,10 +11,11 @@
   3. Frontend skeleton & Auth -> To allow testing roles (Manager vs. Waiter).
   4. Frontend UI pages -> Hooking up the React views to the endpoints.
   5. **Stretch Goal:** Kitchen Display Screen (KDS) & WebSockets -> Built last as a progressive enhancement.
-  I built in this order because building UI without a working API usually leads to rewriting state logic once the real API is hooked up. Adding WebSockets last ensured the core REST architecture was sound first.
+  6. **UI/UX Polish:** Entire app restyled to a dark glassmorphism theme, built a custom mockup-matching login page, and added extensive mobile responsiveness across all views.
+  I built in this order because building UI without a working API usually leads to rewriting state logic once the real API is hooked up. Adding WebSockets and deep UI theming last ensured the core REST architecture was sound first.
 
 - **What did you estimate versus what it actually took?**
-  I estimated about 12 hours total for the core requirements. Setting up the DB schema and backend endpoints took roughly 5 hours. The frontend UI took about 5 hours. The final 2 hours were spent on Dashboard charts and alerts. I spent an additional 1-2 hours implementing the KDS stretch goal with WebSockets.
+  I estimated about 12 hours total for the core requirements. Setting up the DB schema and backend endpoints took roughly 5 hours. The frontend UI took about 5 hours. The final 2 hours were spent on Dashboard charts and alerts. I spent an additional 1-2 hours implementing the KDS stretch goal with WebSockets, plus another 1 hour completely overhauling the UI theme (glassmorphism) and fixing mobile responsiveness.
 
 - **What did you cut when you ran short?**
   I explicitly cut the split-check and inventory tracking stretch goals to ensure the core requirements—and the real-time KDS board—were rock solid and bug-free.

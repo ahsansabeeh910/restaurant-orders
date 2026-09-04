@@ -40,9 +40,10 @@ The backend is hosted on Render's free tier. **It spins down after 15 minutes of
 | 9 | History you cannot rewrite | Done | Dedicated `order_history` table; UI renders it as a timeline. |
 | 10| Slow-order alerts | Done | Node.js `setInterval` polls DB for slow orders, handles reappearance. |
 | 11| **STRETCH: Kitchen Display** | **Done** | Real-time Kanban board for the kitchen using WebSockets (`socket.io`). |
+| 12| **STRETCH: UI/UX Redesign** | **Done** | Custom dark glassmorphism theme, fully mobile responsive tables & layouts, and a custom mockup-matched login page. |
 
 ## How much time did you actually spend?
-Roughly 13 hours (including the stretch goal implementation).
+Roughly 14 hours (including the stretch goals, custom UI theming, and responsive fixes).
 
 ## What would you do next, with another 12 hours?
 Since I already built the Kitchen Display Screen (KDS) stretch goal, I would focus next on **Split Checks** and **Ingredient-level Inventory Tracking**. I would also add proper Dockerization for easier local onboarding.
