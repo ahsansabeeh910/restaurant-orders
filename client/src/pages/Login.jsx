@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <div 
-      className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-start px-4 md:px-16 lg:px-32 relative bg-cover bg-center bg-no-repeat"
+      className="min-h-screen w-full flex items-center justify-center p-4 relative bg-cover bg-center bg-no-repeat"
       style={{ 
         backgroundImage: "url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
         backgroundColor: '#f3f4f6'
@@ -40,7 +40,7 @@ const Login = () => {
           </div>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900 text-center mb-3">Login form</h1>
+        <h1 className="text-2xl font-bold text-gray-900 text-center mb-3">Login</h1>
         <p className="text-sm text-gray-500 text-center mb-8 px-2 leading-relaxed">
           Welcome to RestaurantOS. Please sign in to manage your restaurant operations.
         </p>
@@ -84,15 +84,12 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="mt-3 ml-1">
-              <a href="#" className="text-xs font-bold text-[#ea580c] hover:text-[#c2410c] transition-colors">Forgot password?</a>
-            </div>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white py-3.5 rounded-full font-bold text-sm transition-colors shadow-lg shadow-orange-500/30 mt-4"
+            className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white py-3.5 rounded-full font-bold text-sm transition-colors shadow-lg shadow-orange-500/30 mt-6"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
@@ -104,10 +101,6 @@ const Login = () => {
             <p><strong className="text-gray-700">Manager:</strong> manager@restaurant.com / password123</p>
             <p><strong className="text-gray-700">Waiter:</strong> waiter1@restaurant.com / password123</p>
           </div>
-        </div>
-
-        <div className="mt-8 text-center">
-          <a href="#" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">End user agreement</a>
         </div>
       </div>
     </div>
