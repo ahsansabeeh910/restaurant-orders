@@ -5,12 +5,12 @@ import { useAuth } from '../context/AuthContext';
 import { Plus, Search, ChevronLeft, ChevronRight, Download } from 'lucide-react';
 
 const STATUS_COLORS = {
-  PLACED: 'bg-yellow-100 text-yellow-800',
-  ACCEPTED: 'bg-blue-100 text-blue-800',
-  PREPARING: 'bg-orange-100 text-orange-800',
-  READY: 'bg-green-100 text-green-800',
-  SERVED: 'bg-gray-100 text-gray-800',
-  CANCELLED: 'bg-red-100 text-red-800',
+  PLACED: 'bg-yellow-500/10 text-yellow-400',
+  ACCEPTED: 'bg-blue-500/10 text-blue-400',
+  PREPARING: 'bg-orange-500/10 text-orange-400',
+  READY: 'bg-green-500/10 text-green-400',
+  SERVED: 'bg-gray-500/10 text-gray-400',
+  CANCELLED: 'bg-red-500/10 text-red-400',
 };
 
 const OrderList = () => {
@@ -128,19 +128,19 @@ const OrderList = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
-        <h1 className="text-2xl font-bold text-gray-900">Orders</h1>
+        <h1 className="text-2xl font-bold text-white">Orders</h1>
         <div className="flex gap-3">
           {isManager && (
             <button
               onClick={handleExportCSV}
-              className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50"
+              className="flex items-center gap-2 border border-white/10 text-gray-300 px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/5 transition"
             >
               <Download className="h-4 w-4" /> Export CSV
             </button>
           )}
           <button
             onClick={openCreateModal}
-            className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700"
+            className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
           >
             <Plus className="h-4 w-4" /> New Order
           </button>
@@ -151,21 +151,21 @@ const OrderList = () => {
       <div className="flex flex-wrap gap-3 items-end">
         <form onSubmit={handleSearch} className="flex gap-2">
           <div className="relative">
-            <Search className="h-4 w-4 absolute left-3 top-2.5 text-gray-400" />
+            <Search className="h-4 w-4 absolute left-3 top-2.5 text-gray-500" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search table #..."
-              className="pl-9 pr-3 py-2 border rounded-lg text-sm w-40"
+              className="pl-9 pr-3 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-sm w-40 placeholder-gray-500"
             />
           </div>
-          <button type="submit" className="bg-gray-100 px-3 py-2 rounded-lg text-sm hover:bg-gray-200">Search</button>
+          <button type="submit" className="bg-white/5 border border-white/10 text-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-white/10">Search</button>
         </form>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="border rounded-lg px-3 py-2 text-sm"
+          className="bg-white/5 border border-white/10 text-white rounded-lg px-3 py-2 text-sm"
         >
           <option value="">All Statuses</option>
           {['PLACED', 'ACCEPTED', 'PREPARING', 'READY', 'SERVED', 'CANCELLED'].map(s => (
@@ -175,7 +175,7 @@ const OrderList = () => {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="border rounded-lg px-3 py-2 text-sm"
+          className="bg-white/5 border border-white/10 text-white rounded-lg px-3 py-2 text-sm"
         >
           <option value="placedAt">Sort by Time</option>
           <option value="tableNumber">Sort by Table</option>
@@ -184,7 +184,7 @@ const OrderList = () => {
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="border rounded-lg px-3 py-2 text-sm"
+          className="bg-white/5 border border-white/10 text-white rounded-lg px-3 py-2 text-sm"
         >
           <option value="desc">Newest first</option>
           <option value="asc">Oldest first</option>
@@ -192,34 +192,34 @@ const OrderList = () => {
       </div>
 
       {/* Orders table */}
-      <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+      <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b">
+          <thead className="bg-white/5 border-b border-white/10">
             <tr>
-              <th className="px-4 py-3 text-left font-medium text-gray-600">Table</th>
-              <th className="px-4 py-3 text-left font-medium text-gray-600">Status</th>
-              <th className="px-4 py-3 text-left font-medium text-gray-600">Waiter</th>
-              <th className="px-4 py-3 text-left font-medium text-gray-600">Items</th>
-              <th className="px-4 py-3 text-left font-medium text-gray-600">Total</th>
-              <th className="px-4 py-3 text-left font-medium text-gray-600">Placed</th>
+              <th className="px-4 py-3 text-left font-medium text-gray-400">Table</th>
+              <th className="px-4 py-3 text-left font-medium text-gray-400">Status</th>
+              <th className="px-4 py-3 text-left font-medium text-gray-400">Waiter</th>
+              <th className="px-4 py-3 text-left font-medium text-gray-400">Items</th>
+              <th className="px-4 py-3 text-left font-medium text-gray-400">Total</th>
+              <th className="px-4 py-3 text-left font-medium text-gray-400">Placed</th>
             </tr>
           </thead>
-          <tbody className="divide-y">
+          <tbody className="divide-y divide-white/10">
             {orders.map((order) => (
               <tr
                 key={order.id}
                 onClick={() => navigate(`/orders/${order.id}`)}
-                className="hover:bg-gray-50 cursor-pointer"
+                className="hover:bg-white/5 cursor-pointer transition"
               >
-                <td className="px-4 py-3 font-medium">#{order.tableNumber}</td>
+                <td className="px-4 py-3 font-medium text-white">#{order.tableNumber}</td>
                 <td className="px-4 py-3">
                   <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[order.status]}`}>
                     {order.status}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-gray-700">{order.primaryWaiter?.name}</td>
-                <td className="px-4 py-3 text-gray-700">{order.lines?.length || 0}</td>
-                <td className="px-4 py-3 font-medium">${Number(order.total).toFixed(2)}</td>
+                <td className="px-4 py-3 text-gray-300">{order.primaryWaiter?.name}</td>
+                <td className="px-4 py-3 text-gray-300">{order.lines?.length || 0}</td>
+                <td className="px-4 py-3 font-medium text-white">${Number(order.total).toFixed(2)}</td>
                 <td className="px-4 py-3 text-gray-500">
                   {new Date(order.placedAt).toLocaleString()}
                 </td>
@@ -235,21 +235,21 @@ const OrderList = () => {
       {/* Pagination */}
       {pagination.totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             Showing {(pagination.page - 1) * pagination.limit + 1} – {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
           </p>
           <div className="flex gap-2">
             <button
               onClick={() => fetchOrders(pagination.page - 1)}
               disabled={pagination.page === 1}
-              className="p-2 border rounded-lg disabled:opacity-50 hover:bg-gray-50"
+              className="p-2 border border-white/10 rounded-lg disabled:opacity-30 hover:bg-white/5 text-gray-300"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               onClick={() => fetchOrders(pagination.page + 1)}
               disabled={pagination.page >= pagination.totalPages}
-              className="p-2 border rounded-lg disabled:opacity-50 hover:bg-gray-50"
+              className="p-2 border border-white/10 rounded-lg disabled:opacity-30 hover:bg-white/5 text-gray-300"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
@@ -259,33 +259,33 @@ const OrderList = () => {
 
       {/* Create order modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
-            <h2 className="text-lg font-bold mb-4">New Order</h2>
-            {createError && <div className="mb-3 text-sm text-red-600 bg-red-50 p-2 rounded">{createError}</div>}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="bg-[#12121a] backdrop-blur-2xl border border-white/10 rounded-xl shadow-xl p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
+            <h2 className="text-lg font-bold text-white mb-4">New Order</h2>
+            {createError && <div className="mb-3 text-sm text-red-400 bg-red-500/10 p-2 rounded border border-red-500/20">{createError}</div>}
             <form onSubmit={handleCreateOrder} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Table Number</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Table Number</label>
                 <input
                   type="number"
                   min="1"
                   value={newOrder.tableNumber}
                   onChange={(e) => setNewOrder({ ...newOrder, tableNumber: e.target.value })}
-                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                  className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-3 py-2 text-sm placeholder-gray-500"
                   required
                 />
               </div>
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-gray-700">Order Lines</label>
-                  <button type="button" onClick={addLine} className="text-xs text-indigo-600 hover:underline">+ Add line</button>
+                  <label className="text-sm font-medium text-gray-300">Order Lines</label>
+                  <button type="button" onClick={addLine} className="text-xs text-amber-400 hover:underline">+ Add line</button>
                 </div>
                 {newOrder.lines.map((line, idx) => (
                   <div key={idx} className="flex gap-2 mb-2 items-start">
                     <select
                       value={line.menuItemId}
                       onChange={(e) => updateLine(idx, 'menuItemId', e.target.value)}
-                      className="border rounded-lg px-2 py-1.5 text-sm flex-1"
+                      className="bg-white/5 border border-white/10 text-white rounded-lg px-2 py-1.5 text-sm flex-1"
                       required
                     >
                       <option value="">Select item...</option>
@@ -298,17 +298,17 @@ const OrderList = () => {
                       min="1"
                       value={line.quantity}
                       onChange={(e) => updateLine(idx, 'quantity', e.target.value)}
-                      className="border rounded-lg px-2 py-1.5 text-sm w-16"
+                      className="bg-white/5 border border-white/10 text-white rounded-lg px-2 py-1.5 text-sm w-16"
                     />
                     <input
                       type="text"
                       value={line.specialInstructions}
                       onChange={(e) => updateLine(idx, 'specialInstructions', e.target.value)}
                       placeholder="Notes"
-                      className="border rounded-lg px-2 py-1.5 text-sm flex-1"
+                      className="bg-white/5 border border-white/10 text-white rounded-lg px-2 py-1.5 text-sm flex-1 placeholder-gray-500"
                     />
                     {newOrder.lines.length > 1 && (
-                      <button type="button" onClick={() => removeLine(idx)} className="text-red-500 text-sm px-1">✕</button>
+                      <button type="button" onClick={() => removeLine(idx)} className="text-red-400 text-sm px-1">✕</button>
                     )}
                   </div>
                 ))}
@@ -317,13 +317,13 @@ const OrderList = () => {
                 <button
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="px-4 py-2 text-sm text-gray-400 hover:bg-white/5 rounded-lg"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+                  className="px-4 py-2 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
                 >
                   Place Order
                 </button>

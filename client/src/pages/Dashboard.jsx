@@ -48,29 +48,29 @@ const Dashboard = () => {
   ];
 
   const statusColors = {
-    PLACED: 'bg-yellow-100 text-yellow-800',
-    ACCEPTED: 'bg-blue-100 text-blue-800',
-    PREPARING: 'bg-orange-100 text-orange-800',
-    READY: 'bg-green-100 text-green-800',
-    SERVED: 'bg-gray-100 text-gray-800',
-    CANCELLED: 'bg-red-100 text-red-800',
+    PLACED: 'bg-yellow-500/10 text-yellow-400',
+    ACCEPTED: 'bg-blue-500/10 text-blue-400',
+    PREPARING: 'bg-orange-500/10 text-orange-400',
+    READY: 'bg-green-500/10 text-green-400',
+    SERVED: 'bg-gray-500/10 text-gray-400',
+    CANCELLED: 'bg-red-500/10 text-red-400',
   };
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+      <h1 className="text-2xl font-bold text-white">Dashboard</h1>
 
       {/* Stat cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((card) => (
-          <div key={card.label} className="bg-white rounded-xl shadow-sm border p-5">
+          <div key={card.label} className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">{card.label}</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{card.value}</p>
+                <p className="text-sm text-gray-400">{card.label}</p>
+                <p className="text-2xl font-bold text-white mt-1">{card.value}</p>
               </div>
-              <div className={`${card.color} p-3 rounded-lg`}>
-                <card.icon className="h-6 w-6 text-white" />
+              <div className={`${card.color}/20 p-3 rounded-lg`}>
+                <card.icon className={`h-6 w-6 ${card.color.replace('bg-', 'text-')}`} />
               </div>
             </div>
           </div>
@@ -79,15 +79,15 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Orders by status */}
-        <div className="bg-white rounded-xl shadow-sm border p-5">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Orders by Status</h2>
+        <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 p-5">
+          <h2 className="text-lg font-semibold text-white mb-4">Orders by Status</h2>
           <div className="space-y-3">
             {byStatus.map((item) => (
               <div key={item.status} className="flex items-center justify-between">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[item.status] || 'bg-gray-100'}`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[item.status] || 'bg-white/5'}`}>
                   {item.status}
                 </span>
-                <span className="text-lg font-semibold text-gray-900">{item.count}</span>
+                <span className="text-lg font-semibold text-white">{item.count}</span>
               </div>
             ))}
             {byStatus.length === 0 && <p className="text-gray-500 text-sm">No orders yet</p>}
@@ -95,13 +95,13 @@ const Dashboard = () => {
         </div>
 
         {/* Orders by waiter */}
-        <div className="bg-white rounded-xl shadow-sm border p-5">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Orders by Waiter</h2>
+        <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 p-5">
+          <h2 className="text-lg font-semibold text-white mb-4">Orders by Waiter</h2>
           <div className="space-y-3">
             {byWaiter.map((item) => (
               <div key={item.waiterId} className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">{item.waiterName}</span>
-                <span className="text-lg font-semibold text-gray-900">{item.count}</span>
+                <span className="text-sm text-gray-300">{item.waiterName}</span>
+                <span className="text-lg font-semibold text-white">{item.count}</span>
               </div>
             ))}
             {byWaiter.length === 0 && <p className="text-gray-500 text-sm">No orders yet</p>}
@@ -109,21 +109,17 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Chart: Orders served per day (last 14 days) */}
-      <div className="bg-white rounded-xl shadow-sm border p-5">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Orders Served — Last 14 Days</h2>
+      {/* Chart */}
+      <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 p-5">
+        <h2 className="text-lg font-semibold text-white mb-4">Orders Served — Last 14 Days</h2>
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={servedPerDay}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="date"
-                tick={{ fontSize: 12 }}
-                tickFormatter={(val) => val.slice(5)}
-              />
-              <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#6366f1" radius={[4, 4, 0, 0]} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#9ca3af' }} tickFormatter={(val) => val.slice(5)} />
+              <YAxis allowDecimals={false} tick={{ fill: '#9ca3af' }} />
+              <Tooltip contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#e2e8f0' }} />
+              <Bar dataKey="count" fill="#f59e0b" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
