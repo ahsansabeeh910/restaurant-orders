@@ -66,7 +66,7 @@ export default function KitchenDisplay() {
   if (loading) return <div className="p-8 text-gray-400">Loading Kitchen Display...</div>;
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] flex-col -m-8 p-4 overflow-hidden">
+    <div className="flex flex-col lg:h-[calc(100vh-4rem)] -m-4 lg:-m-8 p-4 overflow-hidden">
       <div className="mb-4 flex items-center justify-between px-4">
         <h1 className="text-2xl font-bold flex items-center gap-2 text-white">
           <ChefHat className="w-8 h-8 text-amber-400" />
@@ -81,7 +81,7 @@ export default function KitchenDisplay() {
         </div>
       </div>
 
-      <div className="flex flex-1 gap-4 overflow-x-auto pb-4">
+      <div className="flex flex-col lg:flex-row flex-1 gap-4 overflow-y-auto lg:overflow-x-auto pb-4">
         <Column
           title="Accepted (Queue)"
           orders={getOrdersByStatus('ACCEPTED')}
@@ -114,7 +114,7 @@ export default function KitchenDisplay() {
 
 function Column({ title, orders, icon: Icon, color, headerColor, onAction, actionText }) {
   return (
-    <div className={clsx('flex flex-col min-w-[350px] max-w-sm rounded-xl border border-white/10 overflow-hidden backdrop-blur-xl', color)}>
+    <div className={clsx('flex flex-col w-full lg:min-w-[350px] lg:max-w-sm rounded-xl border border-white/10 overflow-hidden backdrop-blur-xl', color)}>
       <div className={clsx('px-4 py-3 font-semibold flex justify-between items-center', headerColor)}>
         <div className="flex items-center gap-2">
           <Icon className="w-5 h-5" />

@@ -103,7 +103,7 @@ const MenuManagement = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-2xl font-bold text-white">Menu Management</h1>
         <div className="flex gap-3">
           <label className="flex items-center gap-2 text-sm text-gray-400">
@@ -191,6 +191,7 @@ const MenuManagement = () => {
 
       {/* Table */}
       <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
+        <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-white/5 border-b border-white/10">
             <tr>
@@ -260,6 +261,7 @@ const MenuManagement = () => {
             ))}
           </tbody>
         </table>
+        </div>
         {items.length === 0 && (
           <div className="text-center py-8 text-gray-500">No menu items found</div>
         )}

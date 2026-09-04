@@ -193,7 +193,8 @@ const OrderList = () => {
 
       {/* Orders table */}
       <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full text-sm min-w-[600px]">
           <thead className="bg-white/5 border-b border-white/10">
             <tr>
               <th className="px-4 py-3 text-left font-medium text-gray-400">Table</th>
@@ -227,6 +228,7 @@ const OrderList = () => {
             ))}
           </tbody>
         </table>
+        </div>
         {orders.length === 0 && (
           <div className="text-center py-8 text-gray-500">No orders found</div>
         )}
@@ -234,7 +236,7 @@ const OrderList = () => {
 
       {/* Pagination */}
       {pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <p className="text-sm text-gray-400">
             Showing {(pagination.page - 1) * pagination.limit + 1} – {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
           </p>
@@ -281,7 +283,7 @@ const OrderList = () => {
                   <button type="button" onClick={addLine} className="text-xs text-amber-400 hover:underline">+ Add line</button>
                 </div>
                 {newOrder.lines.map((line, idx) => (
-                  <div key={idx} className="flex gap-2 mb-2 items-start">
+                  <div key={idx} className="flex flex-wrap gap-2 mb-2 items-start">
                     <select
                       value={line.menuItemId}
                       onChange={(e) => updateLine(idx, 'menuItemId', e.target.value)}
