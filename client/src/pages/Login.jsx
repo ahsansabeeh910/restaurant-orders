@@ -27,9 +27,9 @@ const Login = () => {
 
   return (
     <div 
-      className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-start px-4 md:px-16 lg:px-32 relative bg-cover bg-right bg-no-repeat"
+      className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-start px-4 md:px-16 lg:px-32 relative bg-cover bg-center bg-no-repeat"
       style={{ 
-        backgroundImage: "url('/bg-login.png')",
+        backgroundImage: "url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
         backgroundColor: '#f3f4f6'
       }}
     >
